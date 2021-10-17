@@ -8,6 +8,9 @@ You can get all dates of Holidays beasd on www.time.ir
 
 This module provides dates of holidays for Iran, check the any specific date is holiday or not beased on online.
 
+### NOTE: Input Format IS IMPORTANT
+
+
 ### Get all Holidays in a specific year
 
 ```javascript
@@ -22,7 +25,7 @@ holiday()
 
 ### Get all Holidays in a specific year based on offline
 
-There are dates of holidays for 1400-1405
+There are dates of holidays for 1400-1406
 
 ```javascript
 const { getHolidays } = require('shamsi-holidays');
