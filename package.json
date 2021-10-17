@@ -32,7 +32,10 @@
     "iran-holidays",
     "iran-holiday",
     "jalali",
-    "jalali-holidays"
+    "jalali-holidays",
+    "persian",
+    "perian-calender",
+    "persian-holidays"
   ],
   "author": "Yaser Ahmadi",
   "license": "ISC",

@@ -11,8 +11,8 @@ You can get all dates of Holidays beasd on www.time.ir
 ### NOTE: Input Format IS IMPORTANT
 
 
-### Get all Holidays in a specific year
-
+## Get all Holidays
+#### Online request
 ```javascript
 const { getHolidaysYearOnline } = require('shamsi-holidays');
 
@@ -23,7 +23,7 @@ async function holiday() {
 holiday()
 ```
 
-### Get all Holidays in a specific year based on offline
+#### Static data (offline)
 
 There are dates of holidays for 1400-1406
 
@@ -38,7 +38,8 @@ holiday()
 ```
 
 
-### Check status of Date based on online and send a request to time.ir
+## Check status of date
+#### Online request
 
 ```javascript
 const { isHolidaysOnline } = require('shamsi-holidays');
@@ -54,7 +55,7 @@ holiday()
 ```
 
 
-### Check status of Date based on offline without any request to time.ir
+#### Static data (offline)
 
 ```javascript
 const { isHoliday } = require('shamsi-holidays');
@@ -69,8 +70,9 @@ async function holiday() {
 holiday()
 ```
 
-### Get all Holidays in specific month of year
+## Get all Holidays in specific month of year
 
+#### Online request
 ```javascript
 const { getHolidaysYearAndMonthOnline } = require('shamsi-holidays');
 
@@ -84,7 +86,7 @@ holiday()
 ```
 
 
-### Get all Holidays in specific months of year
+## Get all Holidays in specific months of year
 
 ```javascript
 const { getHolidaysYearAndMonthsOnline } = require('shamsi-holidays');
