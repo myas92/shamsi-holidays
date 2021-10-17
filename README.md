@@ -6,7 +6,7 @@
 
 You can get all dates of Holidays beasd on www.time.ir
 
-This module provides dates of holidays for Iran, check the any specific date is holiday or not beased on online.
+[shamsi-holidays](https://github.com/myas92/shamsi-holidays) provides dates of holidays for Iran, check the any specific date is holiday or not beased on online.
 
 ### NOTE: Input Format IS IMPORTANT
 
