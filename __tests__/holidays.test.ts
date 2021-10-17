@@ -14,7 +14,6 @@ describe("test shmasi-holidays functions", () => {
 
   it("getHolidaysYearOnline: should return dates of holidays for 1400", async () => {
     const holidays = await getHolidaysYearOnline('1400');
-    console.log(holidays)
     expect(holidays.length).toBe(74);
   }, 40000);//set timeout for test
 
