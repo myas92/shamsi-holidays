@@ -4,26 +4,29 @@ export {
     getHolidaysYearAndMonthsOnline,
     isHolidaysOnline,
     updateStaticHolidayDays,
-    isHolidaysOffline
+    isHolidayOffline as isHoliday,
+    getHolidaysYearOffline as getHolidays
 } from './holidays';
 
 
 
-// import { getHolidaysYearAndMonthOnline,
-//      getHolidaysYearOnline,
-//       getHolidaysYearAndMonthsOnline, 
-//       isHolidaysOnline,
-//        updateStaticHolidayDays,
-//        isHolidaysOffline,
-//         } from './holidays';
+// import {
+//     getHolidaysYearAndMonthOnline,
+//     getHolidaysYearOnline,
+//     getHolidaysYearAndMonthsOnline,
+//     isHolidaysOnline,
+//     updateStaticHolidayDays,
+//     isHolidayOffline,
+//     getHolidaysYearOffline
+// } from './holidays';
 
 
 
 // async function runTests() {
 
 //     try {
-//         let x = await getHolidaysYearOnline()
-//         console.log("getHolidaysYearOnline", x);
+//         // let x = await getHolidaysYearOnline()
+//         // console.log("getHolidaysYearOnline", x);
 
 //         // let x1 = await getHolidaysYearAndMonthOnline()
 //         // console.log("getHolidaysYearAndMonthOnline:", x1);
@@ -34,11 +37,14 @@ export {
 //         // let x3 = await isHolidaysOnline("1400/01/02")
 //         // console.log("isHolidaysOnline:", x3);
 
-//         // let x4 = await updateStaticHolidayDays()
+//         // let x4 = await updateStaticHolidayDays('1405')
 //         // console.log("updateStaticHolidayDays:", x4);
 
-//         // let x5 = await isHolidaysOffline("1400/01/02")
-//         // console.log("isHolidaysOffline:", x5);
+//         // let x5 = await isHolidayOffline("1400/01/02")
+//         // console.log("isHolidayOffline:", x5);
+
+//         let x6 = await getHolidaysYearOffline("1400")
+//         console.log("isHolidayOffline:", x6);
 
 //     } catch (error) {
 //         console.log(error);

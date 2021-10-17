@@ -20,6 +20,21 @@ async function holiday() {
 holiday()
 ```
 
+### Get all Holidays in a specific year based on offline
+
+There are dates of holidays for 1400-1405
+
+```javascript
+const { getHolidays } = require('shamsi-holidays');
+
+async function holiday() {
+    const result = await getHolidays('1400');
+    console.log(result);
+}
+holiday()
+```
+
+
 ### Check status of Date based on online and send a request to time.ir
 
 ```javascript
@@ -39,13 +54,13 @@ holiday()
 ### Check status of Date based on offline without any request to time.ir
 
 ```javascript
-const { isHolidaysOffline } = require('shamsi-holidays');
+const { isHoliday } = require('shamsi-holidays');
 
 // date format = jYYYY/jMM/jDD | 1400/01/02
 
 const date = '1400/01/02'
 async function holiday() {
-    const result = await isHolidaysOffline(date);
+    const result = await isHoliday(date);
     console.log(result);
 }
 holiday()

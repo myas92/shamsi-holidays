@@ -1,1 +1,1 @@
-export { getHolidaysYearOnline, getHolidaysYearAndMonthOnline, getHolidaysYearAndMonthsOnline, isHolidaysOnline, updateStaticHolidayDays, isHolidaysOffline } from './holidays';
+export { getHolidaysYearOnline, getHolidaysYearAndMonthOnline, getHolidaysYearAndMonthsOnline, isHolidaysOnline, updateStaticHolidayDays, isHolidayOffline as isHoliday, getHolidaysYearOffline as getHolidays } from './holidays';
