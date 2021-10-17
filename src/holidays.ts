@@ -130,7 +130,7 @@ export const isHolidayOffline = async (date: string = '') => {
     let isHoliday = false;
     date = (date) ? date : moment().format('jYYYY/jMM/jDD');
     const year = moment(date, 'jYYYY/jMM/jDD').format('jYYYY')
-    const fileName = `./src/holidays${year}.json`;
+    const fileName = `./src/static-holidays-data/holidays${year}.json`;
     const staticHolidays = readFile(fileName)
     if (staticHolidays.length !== 0) {
         try {

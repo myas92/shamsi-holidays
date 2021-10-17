@@ -1,11 +1,13 @@
-
 import {
-  requestToTime,
   getHolidaysYearOnline,
   getHolidaysYearAndMonthOnline,
   getHolidaysYearAndMonthsOnline,
-  isHolidayOffline
+  isHolidaysOnline,
+  updateStaticHolidayDays,
+  isHolidayOffline as isHoliday,
+  getHolidaysYearOffline as getHolidays
 } from '../src/holidays';
+
 describe("test shmasi-holidays functions", () => {
   // it("requestToTime: should return dates of holidays for 1400/01", async () => {
   //   const holidays = await requestToTime('1', '1400')
@@ -28,16 +30,20 @@ describe("test shmasi-holidays functions", () => {
   // }, 40000);//set timeout for test
 
 
-  // it("isHolidayOffline: should return status of date for 1400/01/02", async () => {
-  //   const statusHoliday = await isHolidayOffline('1400/01/02');
-  //   expect(statusHoliday).toBe(true);
-  // });
+  it("isHoliday: should return status of date for 1400/01/02", async () => {
+    const statusHoliday = await isHoliday('1400/01/02');
+    expect(statusHoliday).toBe(true);
+  });
 
-  // it("isHolidayOffline: should throw Error of date for 1396/01/02", async () => {
-  //   let statusHoliday = isHolidayOffline('1396/01/02');
-  //   expect(statusHoliday).rejects.toThrow();
-  // });
-  it("just test for npm", () => {
-    expect(1).toBe(1)
-  })
+  it("isHoliday: should throw Error of date for 1396/01/02", async () => {
+    const statusHoliday = isHoliday('1396/01/02');
+    expect(statusHoliday).rejects.toThrow();
+  });
+
+
+  it("GetHolidays: should throw Error of date for 1400", async () => {
+    const holidays:string[] = await getHolidays('1400');
+    expect(holidays.length).toBe(74);
+  });
+
 });
