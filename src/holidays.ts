@@ -130,7 +130,7 @@ export const isHolidayOffline = async (date: string = '') => {
     let isHoliday = false;
     date = (date) ? date : moment().format('jYYYY/jMM/jDD');
     const year = moment(date, 'jYYYY/jMM/jDD').format('jYYYY')
-    const fileName = `./src/static-holidays-data/holidays${year}.json`;
+    const fileName = `./static-holidays-data/holidays${year}.json`;
     const staticHolidays = readFile(fileName)
     if (staticHolidays.length !== 0) {
         try {
@@ -149,7 +149,7 @@ export const isHolidayOffline = async (date: string = '') => {
 
 export const getHolidaysYearOffline = async (year: string = '') => {
     year = (year) ? year : moment().format('jYYYY');
-    const fileName = `./src/static-holidays-data/holidays${year}.json`;
+    const fileName = `./static-holidays-data/holidays${year}.json`;
     const staticHolidays = readFile(fileName); 
     if (staticHolidays.length !== 0) {
         return staticHolidays
@@ -175,7 +175,7 @@ export const updateStaticHolidayDays = async (year: string = '') => {
             }
         }
         const json = JSON.stringify(result);
-        fs.writeFileSync(`./src/static-holidays-data/${fileName}.json`, json, 'utf8')
+        fs.writeFileSync(`./static-holidays-data/${fileName}.json`, json, 'utf8')
         return result
     }
     catch (error) {

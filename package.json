@@ -1,6 +1,6 @@
 {
   "name": "shamsi-holidays",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "This module provides dates of holidays for Iran",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,14 +9,15 @@
   ],
   "scripts": {
     "test": "jest --config jestconfig.json",
-    "build": "tsc -p tsconfig-build.json",
+    "build": "tsc -p tsconfig-build.json && npm run copy-files",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "copy-files": "cp -r ./static-holidays-data/ ./lib/"
   },
   "repository": {
     "type": "git",
