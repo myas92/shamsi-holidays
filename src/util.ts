@@ -1,9 +1,9 @@
-const moment = require('moment-jalaali');
-export const convertPeToEn = (number:any) => {
-    if (number == null || number == undefined) return "";
+import moment = require('moment-jalaali');
+export const convertPeToEn = (numbers:any) => {
+    if (numbers === null || numbers === undefined) return "";
     let res = "";
-    for (let i = 0; i < number.length; i++) {
-      switch (number[i]) {
+    for (const num of numbers) {
+      switch (num) {
         case "\u06F0":
           res += "\u0030";
           break;
@@ -35,7 +35,7 @@ export const convertPeToEn = (number:any) => {
           res += "\u0039";
           break;
         default:
-          res += number[i];
+          res += num;
       }
     }
     return res;
@@ -45,7 +45,7 @@ export const convertPeToEn = (number:any) => {
   export const convertHolidayDaysToFullDate =(days: any, month: any, year: any)=> {
     let fullDate = [];
     fullDate = days.map((day: any) => {
-        let date = `${year}/${month}/${convertPeToEn(day)}`
+        const date = `${year}/${month}/${convertPeToEn(day)}`
         return moment(date, 'jYYYY,jM,jD').format('jYYYY/jMM/jDD')
     })
     return fullDate

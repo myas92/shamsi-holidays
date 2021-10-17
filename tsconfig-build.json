@@ -5,7 +5,9 @@
       "module": "commonjs",
       "declaration": true,
       "outDir": "./lib",
-      "sourceMap": true
+      "sourceMap": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
     },
     "include": ["src"],
     "exclude": ["node_modules", "**/__tests__/*"]

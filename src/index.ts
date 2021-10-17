@@ -23,8 +23,8 @@ export {
 
 //     // console.log(holidays.justConsole("sdsdsadasdasd"));
 //     try {
-//         // let x = await getHolidaysYearOnline()
-//         // console.log("getHolidaysYearOnline", x);
+//         let x = await getHolidaysYearOnline()
+//         console.log("getHolidaysYearOnline", x);
 
 //         // let x1 = await getHolidaysYearAndMonthOnline()
 //         // console.log("getHolidaysYearAndMonthOnline:", x1);
@@ -38,8 +38,8 @@ export {
 //         // let x4 = await updateStaticHolidayDays()
 //         // console.log("updateStaticHolidayDays:", x4);
 
-//         let x5 = await isHolidaysOffline("1400/01/02")
-//         console.log("isHolidaysOffline:", x5);
+//         // let x5 = await isHolidaysOffline("1400/01/02")
+//         // console.log("isHolidaysOffline:", x5);
 
 //     } catch (error) {
 //         console.log(error);

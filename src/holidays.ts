@@ -1,14 +1,14 @@
-const Crawler = require("crawler");
+import Crawler = require("crawler");
 // const async = require('async');
-const q = require('q');
-const moment = require('moment-jalaali');
-const fs = require('fs');
+import q = require('q');
+import moment = require('moment-jalaali');
+import fs = require('fs');
 import { convertHolidayDaysToFullDate, convertPeToEn } from './util';
 import staticHolidays from './holidays1400.json';
-export const requestToTime: any = async (month: any, year: any) => {
-    let defer = q.defer();
+export const requestToTime = async (month: string, year: string): Promise<any> => {
+    const defer = q.defer();
     try {
-        let crawler = new Crawler();
+        const crawler = new Crawler(null);
         crawler.queue({
             maxConnections: 10,
             uri: 'https://www.time.ir',
@@ -17,14 +17,14 @@ export const requestToTime: any = async (month: any, year: any) => {
                 Year: year,
                 Month: month
             },
-            callback: function (error: any, res: any, done: any) {
+            callback: (error: any, res: any, done: any) => {
                 if (error) {
-                    console.log(error);
+                    throw error
                 } else {
-                    let list: any = []
-                    let $ = res.$;
+                    const list: any = []
+                    const $ = res.$;
                     $(".dayList")
-                        .find("div > .holiday").each(function (index: any, element: any) {
+                        .find("div > .holiday").each((index: any, element: any) => {
                             list.push($(element).find(".jalali").text())
                         });
                     defer.resolve(list)
@@ -33,38 +33,33 @@ export const requestToTime: any = async (month: any, year: any) => {
             }
         });
     } catch (error) {
-        console.log(error);
+        throw error;
     }
     return defer.promise
 }
 
 export const getHolidaysYearOnline = async (year: any = null) => {
-    try {
-        year = (year) ? year : moment().format('jYYYY');
-        let months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-        let result: any = [];
-        for (let month of months) {
-            try {
-                let dayOfHolidays = await requestToTime(month, year)
-                let converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
-                result.push(...converted);
-            } catch (error) {
-                throw error
-            }
+    year = (year) ? year : moment().format('jYYYY');
+    const months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+    const result: any = [];
+    for (const month of months) {
+        try {
+            const dayOfHolidays = await requestToTime(month, year)
+            const converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
+            result.push(...converted);
+        } catch (error) {
+            throw error
         }
-        return result
     }
-    catch (error) {
-        console.log(error);
-    }
+    return result
 }
 
-export const getHolidaysYearAndMonthOnline = async (year: any = null, month: any = null) => {
+export const getHolidaysYearAndMonthOnline = async (year: string = '', month: string = '') => {
     year = (year) ? year : moment().format('jYYYY')
     month = (month) ? month : moment().format('jM')
     try {
-        let dayOfHolidays = await requestToTime({ month, year })
-        let converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
+        const dayOfHolidays = await requestToTime(month, year)
+        const converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
         return converted.sort()
     } catch (error) {
         throw error
@@ -72,14 +67,14 @@ export const getHolidaysYearAndMonthOnline = async (year: any = null, month: any
 }
 
 
-export const getHolidaysYearAndMonthsOnline = async (year: any = null, months: any = []) => {
+export const getHolidaysYearAndMonthsOnline = async (year: string = null, months: string[] = []) => {
     try {
         year = (year) ? year : moment().format('jYYYY');
-        let result: any = [];
-        for (let month of months) {
+        const result: string[] = [];
+        for (const month of months) {
             try {
-                let dayOfHolidays = await requestToTime(month, year)
-                let converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
+                const dayOfHolidays = await requestToTime(month, year)
+                const converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
                 result.push(...converted);
             } catch (error) {
                 throw error
@@ -88,58 +83,55 @@ export const getHolidaysYearAndMonthsOnline = async (year: any = null, months: a
         return result
     }
     catch (error) {
-        console.log(error);
+        throw error
     }
 }
 
 
-export const isHolidaysOnline = async (date: any) => {
-    let status;
-    let year = date ? moment(date, 'jYYYY/jMM/jDD').format('jYYYY') : moment().format('jYYYY');
-    let month = date ? moment(date, 'jYYYY/jMM/jDD').format('jM') : moment().format('jM');
-    let day = date ? moment(date, 'jYYYY/jMM/jDD').format('jD') : moment().format('jD');
+export const isHolidaysOnline = async (date: string) => {
+    let status = false;
+    const year = date ? moment(date, 'jYYYY/jMM/jDD').format('jYYYY') : moment().format('jYYYY');
+    const month = date ? moment(date, 'jYYYY/jMM/jDD').format('jM') : moment().format('jM');
+    const dayInput = date ? moment(date, 'jYYYY/jMM/jDD').format('jD') : moment().format('jD');
     try {
-        let dayOfHolidays = await requestToTime({ month, year })
-        dayOfHolidays = dayOfHolidays.map((day: any) => convertPeToEn(day))
-        if (dayOfHolidays.includes(day)) {
+        let dayOfHolidays = await requestToTime(month, year)
+        dayOfHolidays = dayOfHolidays.map((day: string) => convertPeToEn(day))
+        if (dayOfHolidays.includes(dayInput)) {
             status = true
-        }
-        else {
-            status = false
         }
         return status;
     } catch (error) {
-        console.log(error);
+        throw error
     }
 }
 
-export const updateStaticHolidayDays = async (year: any = null) => {
+export const updateStaticHolidayDays = async (year: string = '') => {
     try {
         year = (year) ? year : moment().format('jYYYY');
-        let fileName = `holidays${year}`
-        let months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-        let result: any = [];
-        for (let month of months) {
+        const fileName = `holidays${year}`
+        const months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+        const result: string[] = [];
+        for (const month of months) {
             try {
-                let dayOfHolidays = await requestToTime(month, year)
-                let converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
+                const dayOfHolidays = await requestToTime(month, year)
+                const converted = convertHolidayDaysToFullDate(dayOfHolidays, month, year)
                 result.push(...converted);
             } catch (error) {
                 throw error
             }
         }
-        var json = JSON.stringify(result);
+        const json = JSON.stringify(result);
         fs.writeFileSync(`./src/${fileName}.json`, json, 'utf8')
         return result
     }
     catch (error) {
-        console.log(error);
+        throw error
     }
 }
 
-export const isHolidaysOffline = async (date: any) => {
+export const isHolidaysOffline = async (date: string) => {
     let status;
-    if(staticHolidays){
+    if (staticHolidays) {
         try {
             if (staticHolidays.includes(date)) {
                 status = true
@@ -149,10 +141,10 @@ export const isHolidaysOffline = async (date: any) => {
             }
             return status;
         } catch (error) {
-            console.log(error);
+            throw error
         }
     }
-    else{
+    else {
         throw new Error("Not exist offline date for this time, please use isHolidaysOnline")
     }
 
