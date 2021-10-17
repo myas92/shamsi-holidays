@@ -1,6 +1,6 @@
 {
   "name": "shamsi-holidays",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "This module provides dates of holidays for Iran",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
