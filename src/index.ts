@@ -37,11 +37,11 @@ export {
 //         // let x3 = await isHolidaysOnline("1400/01/02")
 //         // console.log("isHolidaysOnline:", x3);
 
-//         let x4 = await updateStaticHolidayDays('1406')
-//         console.log("updateStaticHolidayDays:", x4);
+//         // let x4 = await updateStaticHolidayDays('1406')
+//         // console.log("updateStaticHolidayDays:", x4);
 
-//         // let x5 = await isHoliday("1400/01/01")
-//         // console.log("isHoliday:", x5);
+//         let x5 = await isHoliday("1400/01/01")
+//         console.log("isHoliday:", x5);
 
 //         // let x6 = await getHolidays("1400")
 //         // console.log("getHolidays:", x6);

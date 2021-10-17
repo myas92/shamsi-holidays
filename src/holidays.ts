@@ -4,6 +4,8 @@ import q = require('q');
 import moment = require('moment-jalaali');
 import fs = require('fs');
 import { convertHolidayDaysToFullDate, convertPeToEn, readFile } from './util';
+import path = require('path');
+
 export const requestToTime = async (month: string, year: string): Promise<any> => {
     const defer = q.defer();
     try {
@@ -130,8 +132,8 @@ export const isHolidayOffline = async (date: string = '') => {
     let isHoliday = false;
     date = (date) ? date : moment().format('jYYYY/jMM/jDD');
     const year = moment(date, 'jYYYY/jMM/jDD').format('jYYYY')
-    const fileName = `./static-holidays-data/holidays${year}.json`;
-    const staticHolidays = readFile(fileName)
+    const filePath = path.join(__dirname, `/static-holidays-data/holidays${year}.json`);
+    const staticHolidays = readFile(filePath)
     if (staticHolidays.length !== 0) {
         try {
             if (staticHolidays.includes(date)) {
@@ -149,8 +151,8 @@ export const isHolidayOffline = async (date: string = '') => {
 
 export const getHolidaysYearOffline = async (year: string = '') => {
     year = (year) ? year : moment().format('jYYYY');
-    const fileName = `./static-holidays-data/holidays${year}.json`;
-    const staticHolidays = readFile(fileName); 
+    const filePath = path.join(__dirname, `/static-holidays-data/holidays${year}.json`);
+    const staticHolidays = readFile(filePath); 
     if (staticHolidays.length !== 0) {
         return staticHolidays
     }
