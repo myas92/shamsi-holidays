@@ -54,7 +54,7 @@ export const getHolidaysYearOnlineOneByOne = async (year: any = null) => {
 }
 export const getHolidaysYearOnline = async (year: any = null) => {
     year = (year) ? year : moment().format('jYYYY');
-    const months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '13'];
+    const months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
     const result: any = [];
     const requests = []
     // Create list of requests
