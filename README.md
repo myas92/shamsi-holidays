@@ -4,6 +4,7 @@
 
 [![NPM version](https://badge.fury.io/js/shamsi-holidays.svg)](https://www.npmjs.com/package/shamsi-holidays/)
 
+
 You can get all dates of Holidays based on www.time.ir
 
 [shamsi-holidays](https://github.com/myas92/shamsi-holidays) provides dates of holidays for Iran, check the any specific date is holiday or not based on `online request` or `static data`.
